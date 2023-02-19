@@ -14,8 +14,6 @@ module.exports = {
      * @param {Client} client
      * @param {Message} message
      * @param {Array<String>} args
-    */
-    run: async (client, message, args) => {
-        
-    }
-}
+     */
+    run: async (client, message, args) => {},
+};

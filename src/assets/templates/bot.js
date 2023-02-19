@@ -1,14 +1,19 @@
-const { Client, GatewayIntentBits, Events, ChannelType } = require('discord.js');
+const {
+    Client,
+    GatewayIntentBits,
+    Events,
+    ChannelType,
+} = require('discord.js');
 require('dotenv').config();
 
 const prefix = '!';
 
 const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
-    ]
+        GatewayIntentBits.MessageContent,
+    ],
 });
 
 client.on(Events.ClientReady, () => {
@@ -28,8 +33,14 @@ client.on(Events.MessageCreate, (message) => {
 
     if (command === 'say') {
         const content = args.join(' ');
-        if (!content) return message.channel.send('Please provide a message to send.');
-        if (content.includes('<@') || content.includes('<@!')) return message.channel.send('Please don\'t mention anyone with this command.');
+        if (!content) {
+            return message.channel.send('Please provide a message to send.');
+        }
+        if (content.includes('<@') || content.includes('<@!')) {
+            return message.channel.send(
+                "Please don't mention anyone with this command."
+            );
+        }
         message.delete();
         message.channel.sendTyping();
         setTimeout(() => {

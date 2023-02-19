@@ -16,14 +16,27 @@ module.exports = {
      * @param {Client} client
      * @param {Message} message
      * @param {Array<String>} args
-    */
+     */
     run: async (client, message, args) => {
         if (args[0] === 'global') {
-            deployCommands(path.join(__dirname, '../../commands'), client.token, client.user.id);
-            message.channel.send('Successfully deployed application commands globally.');
+            deployCommands(
+                path.join(__dirname, '../../commands'),
+                client.token,
+                client.user.id
+            );
+            message.channel.send(
+                'Successfully deployed application commands globally.'
+            );
         } else {
-            deployCommands(path.join(__dirname, '../../commands'), client.token, client.user.id, message.guild.id);
-            message.channel.send(`Successfully deployed application commands in ${message.guild.name}.`);
+            deployCommands(
+                path.join(__dirname, '../../commands'),
+                client.token,
+                client.user.id,
+                message.guild.id
+            );
+            message.channel.send(
+                `Successfully deployed application commands in ${message.guild.name}.`
+            );
         }
-    }
-}
+    },
+};

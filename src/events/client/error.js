@@ -8,5 +8,5 @@ module.exports = {
      */
     run: async (client, error) => {
         console.error(`[ ERROR ] : ${error}`);
-    }
-}
+    },
+};

@@ -3,8 +3,8 @@ const { Client, ButtonInteraction, EmbedBuilder } = require('discord.js');
 module.exports = {
     id: 'ping',
     /**
-     * @param {Client} client 
-     * @param {ButtonInteraction} interaction 
+     * @param {Client} client
+     * @param {ButtonInteraction} interaction
      */
     run: async (client, interaction) => {
         await interaction.deferReply();
@@ -12,6 +12,6 @@ module.exports = {
             .setTitle('Ping!')
             .setDescription(`${client.ws.ping}ms`)
             .setColor(client.config.color);
-        await interaction.followUp({ embeds: [embed] })
-    }
-}
+        await interaction.followUp({ embeds: [embed] });
+    },
+};

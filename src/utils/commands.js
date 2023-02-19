@@ -21,21 +21,28 @@ function deployCommands(cmdPath, token, clientId, guildId) {
 
     (async () => {
         try {
-            console.log(`[ COMMANDS ] : Started refreshing ${commands.length} application (/) commands.`);
+            console.log(
+                `[ COMMANDS ] : Started refreshing ${commands.length} application (/) commands.`
+            );
 
             if (guildId) {
                 const data = await rest.put(
                     Routes.applicationGuildCommands(clientId, guildId),
-                    { body: commands },
+                    { body: commands }
                 );
-                console.log(`[ COMMANDS ] : Successfully reloaded ${data.length} application (/) commands in ${guildId}.`);
+                console.log(
+                    `[ COMMANDS ] : Successfully reloaded ${data.length} application (/) commands in ${guildId}.`
+                );
             } else {
                 const data = await rest.put(
                     Routes.applicationCommands(clientId),
-                    { body: commands },
+                    {
+                        body: commands,
+                    }
                 );
-                console.log(`[ COMMANDS ] : Successfully reloaded ${data.length} application (/) commands globally.`);
-                
+                console.log(
+                    `[ COMMANDS ] : Successfully reloaded ${data.length} application (/) commands globally.`
+                );
             }
         } catch (error) {
             console.error(error);
@@ -55,13 +62,23 @@ function deleteCommands(token, clientId, guildId) {
     (async () => {
         try {
             if (guildId) {
-                rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: [] })
-                .then(() => console.log(`[ COMMANDS ] : Successfully deleted all application commands in ${guildId}.`))
-                .catch(console.error);
+                rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+                    body: [],
+                })
+                    .then(() =>
+                        console.log(
+                            `[ COMMANDS ] : Successfully deleted all application commands in ${guildId}.`
+                        )
+                    )
+                    .catch(console.error);
             } else {
                 rest.put(Routes.applicationCommands(clientId), { body: [] })
-                .then(() => console.log('[ COMMANDS ] : Successfully deleted all application commands.'))
-                .catch(console.error);
+                    .then(() =>
+                        console.log(
+                            '[ COMMANDS ] : Successfully deleted all application commands.'
+                        )
+                    )
+                    .catch(console.error);
             }
         } catch (error) {
             console.error(error);

@@ -1,12 +1,17 @@
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const {
+    Client,
+    GatewayIntentBits,
+    Collection,
+    WebhookClient,
+} = require('discord.js');
 const config = require('../config.json');
 
-const client = new Client({ 
+const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds, 
+        GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
-    ] 
+        GatewayIntentBits.MessageContent,
+    ],
 });
 
 client.prefix = new Collection();
@@ -16,6 +21,9 @@ client.button = new Collection();
 client.select = new Collection();
 client.modal = new Collection();
 client.config = config;
+
+if (process.env.WEBHOOK_URL)
+    client.logs = new WebhookClient({ url: process.env.WEBHOOK_URL });
 
 require('./handlers')(client);
 

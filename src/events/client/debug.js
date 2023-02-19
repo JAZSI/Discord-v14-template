@@ -9,5 +9,5 @@ module.exports = {
     run: async (client, info) => {
         if (!client.config.debug) return;
         console.log(`[ DEBUG ] : ${info}`);
-    }
-}
+    },
+};

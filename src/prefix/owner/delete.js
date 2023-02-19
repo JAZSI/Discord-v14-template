@@ -15,14 +15,18 @@ module.exports = {
      * @param {Client} client
      * @param {Message} message
      * @param {Array<String>} args
-    */
+     */
     run: async (client, message, args) => {
         if (args[0] === 'global') {
             deleteCommands(client.token, client.user.id);
-            message.channel.send('Successfully deleted application commands globally.');
+            message.channel.send(
+                'Successfully deleted application commands globally.'
+            );
         } else {
             deleteCommands(client.token, client.user.id, message.guild.id);
-            message.channel.send(`Successfully deleted application commands in ${message.guild.name}.`);
+            message.channel.send(
+                `Successfully deleted application commands in ${message.guild.name}.`
+            );
         }
-    }
-}
+    },
+};

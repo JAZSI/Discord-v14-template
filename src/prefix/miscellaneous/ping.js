@@ -14,10 +14,10 @@ module.exports = {
      * @param {Client} client
      * @param {Message} message
      * @param {Array<String>} args
-    */
+     */
     run: async (client, message, args) => {
         const msg = await message.channel.send('Calculating the ping...');
         const ping = client.ws.ping;
         msg.edit(`Ping: ${ping}ms`);
-    }
-}
+    },
+};
